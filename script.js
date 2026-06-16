@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Contact form → opens mail client (temporary, no backend) ---------- */
   // TODO: später auf Formspree/Domain-Mail umstellen — Adresse hier zentral ändern:
-  var CONTACT_EMAIL = 'zaidsinan98@gmail.com';
+  var CONTACT_EMAIL = 'info@zaiddigital.de';
   const form = document.getElementById('form');
   if (form) {
     form.addEventListener('submit', (e) => {
