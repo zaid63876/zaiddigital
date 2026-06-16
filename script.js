@@ -364,3 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && finder.classList.contains('open')) close(); });
   })();
 });
+
+
+// WhatsApp Button Styling
+const whatsappStyle = document.createElement("style"); whatsappStyle.innerHTML = ".whatsapp-btn{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background-color:#25d366;border-radius:50flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,211,102,0.3);transition:all 0.3s;z-index:999;text-decoration:none}.whatsapp-btn:hover{background-color:#20ba5a;transform:scale(1.1);box-shadow:0 6px 16px rgba(37,211,102,0.4)}@media(max-width:768px){.whatsapp-btn{bottom:20px;right:20px;width:55px;height:55px}}"; document.head.appendChild(whatsappStyle);
