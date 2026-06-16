@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Domain ggf. anpassen, sobald sie feststeht:
+Sitemap: https://zaid-digital.de/sitemap.xml

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>STACK — Prototyp</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; overflow:hidden; background:#0d1117; font-family:-apple-system,Segoe UI,Roboto,sans-serif; user-select:none; }
+  #wrap { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; }
+  canvas { display:block; touch-action:none; }
+  #ui { position:fixed; top:0; left:0; right:0; text-align:center; pointer-events:none; padding-top:28px; }
+  #score { color:#fff; font-size:64px; font-weight:800; letter-spacing:-2px; text-shadow:0 4px 24px rgba(0,0,0,.5); transition:transform .08s; }
+  #combo { color:#ffd33d; font-size:20px; font-weight:700; height:24px; opacity:0; transition:opacity .2s; }
+  #hint { position:fixed; bottom:48px; left:0; right:0; text-align:center; color:#8b949e; font-size:17px; font-weight:600; pointer-events:none; transition:opacity .3s; }
+  #over { position:fixed; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center; background:rgba(13,17,23,.82); pointer-events:auto; }
+  #over h1 { color:#fff; font-size:40px; margin-bottom:8px; }
+  #over p { color:#8b949e; font-size:18px; margin-bottom:28px; }
+  #over .best { color:#ffd33d; }
+  #btn { background:#ffd33d; color:#161b22; border:none; padding:16px 44px; font-size:20px; font-weight:800; border-radius:999px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="c"></canvas></div>
+<div id="ui">
+  <div id="score">0</div>
+  <div id="combo"></div>
+</div>
+<div id="hint">Tippe, um den Block zu stapeln</div>
+<div id="over">
+  <h1>Eingestürzt 🧱</h1>
+  <p>Score <span id="fscore">0</span> · Best <span class="best" id="fbest">0</span></p>
+  <button id="btn">Nochmal</button>
+</div>
+<script>
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+let W, H, DPR;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  // Hochformat wie ein Handy, max 480 breit
+  W = Math.min(window.innerWidth, 480);
+  H = window.innerHeight;
+  cv.width = W*DPR; cv.height = H*DPR;
+  cv.style.width = W+'px'; cv.style.height = H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resize); resize();
+
+const scoreEl=document.getElementById('score'), comboEl=document.getElementById('combo'),
+      hintEl=document.getElementById('hint'), overEl=document.getElementById('over'),
+      fscoreEl=document.getElementById('fscore'), fbestEl=document.getElementById('fbest');
+
+const BLOCK_H = 38;            // Höhe eines Blocks
+const baseW = 220;             // Startbreite
+let best = +(localStorage.getItem('stack_best')||0);
+
+let blocks, current, dir, speed, score, combo, camY, particles, shake, state, hue;
+
+function reset(){
+  const cx = W/2;
+  blocks = [{x:cx-baseW/2, w:baseW, y:H-120, hue:200}];
+  hue = 200;
+  spawn();
+  score=0; combo=0; camY=0; particles=[]; shake=0; state='play';
+  scoreEl.textContent='0'; comboEl.style.opacity=0;
+  hintEl.style.opacity=1; overEl.style.display='none';
+}
+function spawn(){
+  const prev = blocks[blocks.length-1];
+  hue = (hue+18)%360;
+  speed = 2.2 + Math.min(blocks.length*0.08, 3.5);
+  dir = (blocks.length%2)? 1 : -1;
+  const startX = dir>0 ? -prev.w : W;
+  current = {x:startX, w:prev.w, y:prev.y-BLOCK_H, hue};
+}
+
+function tap(){
+  if(state==='over'){ reset(); return; }
+  hintEl.style.opacity=0;
+  const prev = blocks[blocks.length-1];
+  const cur = current;
+  const overlapL = Math.max(cur.x, prev.x);
+  const overlapR = Math.min(cur.x+cur.w, prev.x+prev.w);
+  const overlap = overlapR - overlapL;
+  if(overlap <= 0){ gameOver(); return; }
+
+  const diff = cur.w - overlap;
+  // abgeschnittenes Stück als fallende Partikel
+  if(diff > 1){
+    const cutX = (cur.x < prev.x) ? cur.x : overlapR;
+    particles.push({x:cutX, y:cur.y, w:diff, h:BLOCK_H, hue:cur.hue, vy:0, vx:(cur.x<prev.x?-2:2), rot:0, vr:(cur.x<prev.x?-0.05:0.05)});
+    combo = 0;
+  } else {
+    // perfekter Treffer
+    combo++;
+    score += combo>1 ? combo : 1;
+    flashCombo(combo);
+    shake = 6;
+  }
+  score += 1;
+  scoreEl.textContent = score;
+  scoreEl.style.transform='scale(1.18)';
+  setTimeout(()=>scoreEl.style.transform='scale(1)',80);
+
+  blocks.push({x:overlapL, w:overlap, y:cur.y, hue:cur.hue});
+  // Kamera hochschieben wenn Turm zu hoch
+  const topY = cur.y;
+  if(topY < H*0.42) camY += BLOCK_H;
+  spawn();
+}
+
+function flashCombo(c){
+  if(c<2){ comboEl.style.opacity=0; return; }
+  comboEl.textContent = 'PERFEKT ×'+c+' 🔥';
+  comboEl.style.opacity=1;
+}
+
+function gameOver(){
+  state='over';
+  best = Math.max(best, score);
+  localStorage.setItem('stack_best', best);
+  fscoreEl.textContent=score; fbestEl.textContent=best;
+  overEl.style.display='flex';
+}
+
+function loop(){
+  requestAnimationFrame(loop);
+  ctx.clearRect(0,0,W,H);
+
+  // Hintergrund-Gradient passend zur aktuellen Farbe
+  const g = ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0, `hsl(${hue},45%,12%)`);
+  g.addColorStop(1, '#0d1117');
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+
+  let sx=0, sy=0;
+  if(shake>0){ sx=(Math.random()-.5)*shake; sy=(Math.random()-.5)*shake; shake*=0.85; if(shake<0.3)shake=0; }
+  ctx.save();
+  ctx.translate(sx, sy+camY);
+
+  // gestapelte Blöcke
+  for(const b of blocks) drawBlock(b);
+
+  // aktueller, fahrender Block
+  if(state==='play'){
+    current.x += dir*speed;
+    const prev=blocks[blocks.length-1];
+    if(current.x < -current.w-40 || current.x > W+40) dir*=-1;
+    if(current.x+current.w<0) dir=1; if(current.x>W) dir=-1;
+    drawBlock(current, true);
+  }
+
+  // fallende Partikel (abgeschnittene Stücke)
+  for(const p of particles){ p.vy+=0.6; p.y+=p.vy; p.x+=p.vx; p.rot+=p.vr; drawPiece(p); }
+  particles = particles.filter(p=>p.y < H+camY+200);
+
+  ctx.restore();
+}
+
+function drawBlock(b, moving){
+  const x=b.x, y=b.y, w=b.w;
+  ctx.fillStyle=`hsl(${b.hue},65%,55%)`;
+  roundRect(x,y,w,BLOCK_H-4,5); ctx.fill();
+  // Glanzkante oben
+  ctx.fillStyle=`hsl(${b.hue},70%,68%)`;
+  roundRect(x,y,w,7,5); ctx.fill();
+}
+function drawPiece(p){
+  ctx.save(); ctx.translate(p.x+p.w/2,p.y+p.h/2); ctx.rotate(p.rot);
+  ctx.fillStyle=`hsl(${p.hue},65%,55%)`;
+  ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h-4); ctx.restore();
+}
+function roundRect(x,y,w,h,r){
+  r=Math.min(r,w/2,h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+
+window.addEventListener('pointerdown', e=>{ if(e.target.id==='btn')return; tap(); });
+document.getElementById('btn').addEventListener('click', e=>{ e.stopPropagation(); reset(); });
+
+reset(); loop();
+</script>
+</body>
+</html>

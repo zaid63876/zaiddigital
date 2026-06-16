@@ -1,0 +1,36 @@
+<svg viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zaid Digital — Premium Webdesign">
+  <defs>
+    <radialGradient id="l_gold" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFE07A"/><stop offset="40%" stop-color="#D4A017"/><stop offset="100%" stop-color="#8B6500"/>
+    </radialGradient>
+    <radialGradient id="l_star" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#2A2520"/><stop offset="100%" stop-color="#0D0B08"/>
+    </radialGradient>
+    <radialGradient id="l_glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D4A017" stop-opacity="0.18"/><stop offset="100%" stop-color="#D4A017" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="l_soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .glow{animation:lpulse 5s ease-in-out infinite}
+      .ring{animation:lspin 26s linear infinite;transform-box:fill-box;transform-origin:center}
+      @keyframes lpulse{0%,100%{opacity:.6}50%{opacity:1}}
+      @keyframes lspin{to{transform:rotate(360deg)}}
+      @media (prefers-reduced-motion:reduce){.glow,.ring{animation:none}}
+    </style>
+  </defs>
+  <circle class="glow" cx="340" cy="220" r="175" fill="url(#l_glow)"/>
+  <circle cx="340" cy="220" r="148" fill="url(#l_star)" stroke="#D4A017" stroke-width="1.5"/>
+  <circle class="ring" cx="340" cy="220" r="140" fill="none" stroke="#D4A017" stroke-width="0.6" stroke-dasharray="4 3" opacity="0.5"/>
+  <path d="M340,90 L355,170 L420,130 L380,195 L468,195 L415,245 L455,320 L375,285 L340,360 L305,285 L225,320 L265,245 L212,195 L300,195 L300,130 L325,170 Z" fill="url(#l_gold)" filter="url(#l_soft)" opacity="0.92"/>
+  <circle cx="340" cy="225" r="88" fill="#111009"/>
+  <circle cx="340" cy="225" r="82" fill="none" stroke="#D4A017" stroke-width="0.8" opacity="0.6"/>
+  <text x="302" y="252" font-family="Georgia,'Times New Roman',serif" font-size="72" font-weight="700" fill="url(#l_gold)" text-anchor="middle" letter-spacing="-2">Z</text>
+  <text x="378" y="252" font-family="Georgia,'Times New Roman',serif" font-size="72" font-weight="700" fill="url(#l_gold)" text-anchor="middle" letter-spacing="-2">D</text>
+  <line x1="340" y1="192" x2="340" y2="258" stroke="#D4A017" stroke-width="0.7" opacity="0.5"/>
+  <text x="340" y="415" font-family="Georgia,'Times New Roman',serif" font-size="15" font-weight="400" fill="#D4A017" text-anchor="middle" letter-spacing="8" opacity="0.9">ZAID DIGITAL</text>
+  <circle cx="255" cy="415" r="2" fill="#D4A017" opacity="0.6"/>
+  <circle cx="425" cy="415" r="2" fill="#D4A017" opacity="0.6"/>
+  <text x="340" y="442" font-family="Georgia,'Times New Roman',serif" font-size="10" font-weight="400" fill="#D4A017" text-anchor="middle" letter-spacing="4" opacity="0.5">PREMIUM WEBDESIGN</text>
+</svg>

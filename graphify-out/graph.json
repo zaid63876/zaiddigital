@@ -1,0 +1,1135 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "portfolio_beispiele",
+        "label": "Portfolio-Beispiele",
+        "nodes": [
+          "demos_friseur_salon_aurelia",
+          "demos_elektriker_elektro_bauer",
+          "demos_restaurant_trattoria_verde"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "index.html"
+      },
+      {
+        "id": "preispakete_tiers",
+        "label": "Preispaket-Stufen",
+        "nodes": [
+          "index_tier_start",
+          "index_tier_premium",
+          "index_tier_komplett"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "index.html"
+      },
+      {
+        "id": "rechtliches",
+        "label": "Rechtssicherheit (Impressum, Datenschutz, robots)",
+        "nodes": [
+          "impressum_impressum",
+          "datenschutz_datenschutz",
+          "robots_robots"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "index.html"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "launch.json",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_launch",
+      "community": 5,
+      "norm_label": "launch.json"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "claude_launch_version",
+      "community": 5,
+      "norm_label": "version"
+    },
+    {
+      "label": "configurations",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "claude_launch_configurations",
+      "community": 5,
+      "norm_label": "configurations"
+    },
+    {
+      "label": "settings.local.json",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_settings_local",
+      "community": 6,
+      "norm_label": "settings.local.json"
+    },
+    {
+      "label": "permissions",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "claude_settings_local_permissions",
+      "community": 6,
+      "norm_label": "permissions"
+    },
+    {
+      "label": "allow",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "claude_settings_local_permissions_allow",
+      "community": 6,
+      "norm_label": "allow"
+    },
+    {
+      "label": "livereload.js",
+      "file_type": "code",
+      "source_file": "livereload.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "livereload",
+      "community": 11,
+      "norm_label": "livereload.js"
+    },
+    {
+      "label": "check()",
+      "file_type": "code",
+      "source_file": "livereload.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "livereload_check",
+      "community": 11,
+      "norm_label": "check()"
+    },
+    {
+      "label": "script.js",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "script",
+      "community": 2,
+      "norm_label": "script.js"
+    },
+    {
+      "label": "setGlobe()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "script_setglobe",
+      "community": 2,
+      "norm_label": "setglobe()"
+    },
+    {
+      "label": "onScroll()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "script_onscroll",
+      "community": 2,
+      "norm_label": "onscroll()"
+    },
+    {
+      "label": "open()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L246",
+      "_origin": "ast",
+      "id": "script_open",
+      "community": 8,
+      "norm_label": "open()"
+    },
+    {
+      "label": "close()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L247",
+      "_origin": "ast",
+      "id": "script_close",
+      "community": 2,
+      "norm_label": "close()"
+    },
+    {
+      "label": "render()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L249",
+      "_origin": "ast",
+      "id": "script_render",
+      "community": 8,
+      "norm_label": "render()"
+    },
+    {
+      "label": "next()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L266",
+      "_origin": "ast",
+      "id": "script_next",
+      "community": 8,
+      "norm_label": "next()"
+    },
+    {
+      "label": "styleWord()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L268",
+      "_origin": "ast",
+      "id": "script_styleword",
+      "community": 9,
+      "norm_label": "styleword()"
+    },
+    {
+      "label": "zielWord()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L272",
+      "_origin": "ast",
+      "id": "script_zielword",
+      "community": 9,
+      "norm_label": "zielword()"
+    },
+    {
+      "label": "result()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L280",
+      "_origin": "ast",
+      "id": "script_result",
+      "community": 9,
+      "norm_label": "result()"
+    },
+    {
+      "label": "toContact()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L298",
+      "_origin": "ast",
+      "id": "script_tocontact",
+      "community": 2,
+      "norm_label": "tocontact()"
+    },
+    {
+      "label": "Zaid Digital",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Zaid Sinan",
+      "contributor": null,
+      "id": "index_zaid_digital",
+      "community": 4,
+      "norm_label": "zaid digital"
+    },
+    {
+      "label": "Website-Finder",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_website_finder",
+      "community": 0,
+      "norm_label": "website-finder"
+    },
+    {
+      "label": "Leistungen",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_leistungen",
+      "community": 7,
+      "norm_label": "leistungen"
+    },
+    {
+      "label": "Portfolio-Demos",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_portfolio_demos",
+      "community": 0,
+      "norm_label": "portfolio-demos"
+    },
+    {
+      "label": "Preispakete",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_preispakete",
+      "community": 1,
+      "norm_label": "preispakete"
+    },
+    {
+      "label": "Paket Start",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_tier_start",
+      "community": 1,
+      "norm_label": "paket start"
+    },
+    {
+      "label": "Paket Premium",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_tier_premium",
+      "community": 1,
+      "norm_label": "paket premium"
+    },
+    {
+      "label": "Paket Komplett",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_tier_komplett",
+      "community": 1,
+      "norm_label": "paket komplett"
+    },
+    {
+      "label": "Kontaktformular",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_kontaktformular",
+      "community": 4,
+      "norm_label": "kontaktformular"
+    },
+    {
+      "label": "Ablauf in 4 Schritten",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_prozess",
+      "community": 1,
+      "norm_label": "ablauf in 4 schritten"
+    },
+    {
+      "label": "SEO & Google",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_seo",
+      "community": 7,
+      "norm_label": "seo & google"
+    },
+    {
+      "label": "Impressum",
+      "file_type": "document",
+      "source_file": "impressum.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "impressum_impressum",
+      "community": 4,
+      "norm_label": "impressum"
+    },
+    {
+      "label": "Datenschutzerkl\u00e4rung",
+      "file_type": "document",
+      "source_file": "datenschutz.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "datenschutz_datenschutz",
+      "community": 4,
+      "norm_label": "datenschutzerklarung"
+    },
+    {
+      "label": "Salon Aurelia (Friseur-Demo)",
+      "file_type": "document",
+      "source_file": "demos/friseur.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "demos_friseur_salon_aurelia",
+      "community": 0,
+      "norm_label": "salon aurelia (friseur-demo)"
+    },
+    {
+      "label": "Elektro Bauer (Elektriker-Demo)",
+      "file_type": "document",
+      "source_file": "demos/elektriker.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "demos_elektriker_elektro_bauer",
+      "community": 10,
+      "norm_label": "elektro bauer (elektriker-demo)"
+    },
+    {
+      "label": "Trattoria Verde (Restaurant-Demo)",
+      "file_type": "document",
+      "source_file": "demos/restaurant.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "demos_restaurant_trattoria_verde",
+      "community": 0,
+      "norm_label": "trattoria verde (restaurant-demo)"
+    },
+    {
+      "label": "24h-Notdienst",
+      "file_type": "concept",
+      "source_file": "demos/elektriker.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "demos_elektriker_notdienst",
+      "community": 10,
+      "norm_label": "24h-notdienst"
+    },
+    {
+      "label": "Online-Terminbuchung",
+      "file_type": "concept",
+      "source_file": "demos/friseur.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "demos_friseur_terminbuchung",
+      "community": 0,
+      "norm_label": "online-terminbuchung"
+    },
+    {
+      "label": "Tischreservierung",
+      "file_type": "concept",
+      "source_file": "demos/restaurant.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "demos_restaurant_reservierung",
+      "community": 0,
+      "norm_label": "tischreservierung"
+    },
+    {
+      "label": "robots.txt",
+      "file_type": "code",
+      "source_file": "robots.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "robots_robots",
+      "community": 7,
+      "norm_label": "robots.txt"
+    },
+    {
+      "label": "Zaid Digital Full Logo",
+      "file_type": "image",
+      "source_file": "assets/logo.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Gold 8-point star coin emblem on dark background with serif ZD monogram and 'ZAID DIGITAL \u00b7 PREMIUM WEBDESIGN' wordmark; gold accent (#D4A017), dark luxury palette, animated glow and rotating ring.",
+      "id": "assets_logo_zaid_digital_logo",
+      "community": 3,
+      "norm_label": "zaid digital full logo"
+    },
+    {
+      "label": "Zaid Digital Logo Mark",
+      "file_type": "image",
+      "source_file": "assets/logo-mark.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Compact icon variant of the brand: gold 8-point star coin with serif ZD monogram on dark background, no wordmark; same gold accent and dark luxury styling as full logo.",
+      "id": "assets_logo_mark_zaid_digital_mark",
+      "community": 3,
+      "norm_label": "zaid digital logo mark"
+    },
+    {
+      "label": "Zaid Sinan Portrait",
+      "file_type": "image",
+      "source_file": "assets/zaid.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Professional portrait photo of founder Zaid Sinan in a black t-shirt against a dark backdrop with warm gold lighting; used in the '\u00dcber mich' section, matching the dark-luxury brand aesthetic.",
+      "id": "assets_zaid_zaid_sinan_portrait",
+      "community": 3,
+      "norm_label": "zaid sinan portrait"
+    },
+    {
+      "label": "Dark-Luxury-Branding",
+      "file_type": "concept",
+      "source_file": "assets/logo.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Premium brand identity built on a dark background with a gold accent (#D4A017), serif typography, and star/coin emblem conveying exclusivity and luxury web design positioning.",
+      "id": "assets_logo_dark_luxury_branding",
+      "community": 3,
+      "norm_label": "dark-luxury-branding"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_launch",
+      "target": "claude_launch_configurations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_launch",
+      "target": "claude_launch_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_settings_local",
+      "target": "claude_settings_local_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_allow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "livereload.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "livereload",
+      "target": "livereload_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L247",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L266",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_next",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_onscroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L246",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_open",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L249",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L280",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_setglobe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L268",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_styleword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L298",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_tocontact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L272",
+      "weight": 1.0,
+      "source": "script",
+      "target": "script_zielword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "script_onscroll",
+      "target": "script_setglobe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L246",
+      "weight": 1.0,
+      "source": "script_open",
+      "target": "script_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L312",
+      "weight": 1.0,
+      "source": "script_tocontact",
+      "target": "script_close",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L266",
+      "weight": 1.0,
+      "source": "script_next",
+      "target": "script_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L266",
+      "weight": 1.0,
+      "source": "script_next",
+      "target": "script_result",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L289",
+      "weight": 1.0,
+      "source": "script_result",
+      "target": "script_styleword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L289",
+      "weight": 1.0,
+      "source": "script_result",
+      "target": "script_zielword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "demos/elektriker.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_elektriker_elektro_bauer",
+      "target": "index_zaid_digital"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "demos/friseur.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_friseur_salon_aurelia",
+      "target": "index_zaid_digital"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "demos/restaurant.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_restaurant_trattoria_verde",
+      "target": "index_zaid_digital"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "datenschutz_datenschutz"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "impressum_impressum"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "index_kontaktformular"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "index_leistungen"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "index_portfolio_demos"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "index_preispakete"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_zaid_digital",
+      "target": "index_prozess"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_portfolio_demos",
+      "target": "index_website_finder"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_leistungen",
+      "target": "index_seo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_portfolio_demos",
+      "target": "demos_elektriker_elektro_bauer"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_portfolio_demos",
+      "target": "demos_friseur_salon_aurelia"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_portfolio_demos",
+      "target": "demos_restaurant_trattoria_verde"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_preispakete",
+      "target": "index_prozess"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_preispakete",
+      "target": "index_tier_komplett"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_preispakete",
+      "target": "index_tier_premium"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_preispakete",
+      "target": "index_tier_start"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "datenschutz.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "datenschutz_datenschutz",
+      "target": "index_kontaktformular"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "robots.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_seo",
+      "target": "robots_robots"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "impressum_impressum",
+      "target": "datenschutz_datenschutz"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "demos/friseur.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_friseur_salon_aurelia",
+      "target": "demos_friseur_terminbuchung"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "demos/elektriker.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_elektriker_elektro_bauer",
+      "target": "demos_elektriker_notdienst"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "demos/restaurant.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_restaurant_trattoria_verde",
+      "target": "demos_restaurant_reservierung"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "demos_friseur_terminbuchung",
+      "target": "demos_restaurant_reservierung"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "assets/logo-mark.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "assets_logo_mark_zaid_digital_mark",
+      "target": "assets_logo_zaid_digital_logo"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/logo.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "assets_logo_zaid_digital_logo",
+      "target": "assets_logo_dark_luxury_branding"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/zaid.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "assets_zaid_zaid_sinan_portrait",
+      "target": "assets_logo_zaid_digital_logo"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/logo-mark.svg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "assets_logo_mark_zaid_digital_mark",
+      "target": "assets_logo_dark_luxury_branding"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "assets/zaid.jpg",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "assets_zaid_zaid_sinan_portrait",
+      "target": "assets_logo_dark_luxury_branding"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "portfolio_beispiele",
+      "label": "Portfolio-Beispiele",
+      "nodes": [
+        "demos_friseur_salon_aurelia",
+        "demos_elektriker_elektro_bauer",
+        "demos_restaurant_trattoria_verde"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html"
+    },
+    {
+      "id": "preispakete_tiers",
+      "label": "Preispaket-Stufen",
+      "nodes": [
+        "index_tier_start",
+        "index_tier_premium",
+        "index_tier_komplett"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html"
+    },
+    {
+      "id": "rechtliches",
+      "label": "Rechtssicherheit (Impressum, Datenschutz, robots)",
+      "nodes": [
+        "impressum_impressum",
+        "datenschutz_datenschutz",
+        "robots_robots"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "index.html"
+    }
+  ]
+}

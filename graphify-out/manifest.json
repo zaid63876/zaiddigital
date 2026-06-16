@@ -1,0 +1,72 @@
+{
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\.claude\\launch.json": {
+    "mtime": 1780957490.164449,
+    "ast_hash": "0020c92e5fa92cbe465694cd55bf0d6c",
+    "semantic_hash": "0020c92e5fa92cbe465694cd55bf0d6c"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\.claude\\settings.local.json": {
+    "mtime": 1780957446.4550407,
+    "ast_hash": "7a642998ced94b303c7daa988ff480ce",
+    "semantic_hash": "7a642998ced94b303c7daa988ff480ce"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\livereload.js": {
+    "mtime": 1780957479.51882,
+    "ast_hash": "c034ef647133f3adce8af35ff0a2ea8e",
+    "semantic_hash": "c034ef647133f3adce8af35ff0a2ea8e"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\script.js": {
+    "mtime": 1781034910.3951125,
+    "ast_hash": "859b2334c8fc6c27714148ca9e7a8179",
+    "semantic_hash": "859b2334c8fc6c27714148ca9e7a8179"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\datenschutz.html": {
+    "mtime": 1780957350.7007773,
+    "ast_hash": "fca13c84c1397c8705337edf04ce9524",
+    "semantic_hash": "fca13c84c1397c8705337edf04ce9524"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\demos\\elektriker.html": {
+    "mtime": 1781019514.866127,
+    "ast_hash": "7c4a63180116a2eb120e9fd78ba666bc",
+    "semantic_hash": "7c4a63180116a2eb120e9fd78ba666bc"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\demos\\friseur.html": {
+    "mtime": 1781035960.4609575,
+    "ast_hash": "24f00d5111df65d23795bf678a5d036b",
+    "semantic_hash": "24f00d5111df65d23795bf678a5d036b"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\demos\\restaurant.html": {
+    "mtime": 1781019534.3224556,
+    "ast_hash": "a7ad1bc796021860f4dcc17f548afffb",
+    "semantic_hash": "a7ad1bc796021860f4dcc17f548afffb"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\impressum.html": {
+    "mtime": 1780957346.0366306,
+    "ast_hash": "e58bff7badcabdf973eaf1f08e50044b",
+    "semantic_hash": "e58bff7badcabdf973eaf1f08e50044b"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\index.html": {
+    "mtime": 1781034794.0466182,
+    "ast_hash": "ae2943713d4805c778714ac59ebec90e",
+    "semantic_hash": "ae2943713d4805c778714ac59ebec90e"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\robots.txt": {
+    "mtime": 1781033845.6337545,
+    "ast_hash": "26d017853e9c17adb8b373f54e941f66",
+    "semantic_hash": "26d017853e9c17adb8b373f54e941f66"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\assets\\logo-mark.svg": {
+    "mtime": 1781034373.6763794,
+    "ast_hash": "6c65353a379564385ab9f5d47074bbdb",
+    "semantic_hash": "6c65353a379564385ab9f5d47074bbdb"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\assets\\logo.svg": {
+    "mtime": 1781034392.1478329,
+    "ast_hash": "ef34db7ac93f6ddad79270b6610dab25",
+    "semantic_hash": "ef34db7ac93f6ddad79270b6610dab25"
+  },
+  "C:\\Users\\Zaid\\Webside ClaudeCode\\assets\\zaid.jpg": {
+    "mtime": 1781033768.018656,
+    "ast_hash": "11a1a3f5913c7453f8d39096be3aa914",
+    "semantic_hash": "11a1a3f5913c7453f8d39096be3aa914"
+  }
+}

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaid Digital — Redesign Preview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #08080a;
+      --bg-soft: #0d0d10;
+      --fg: #f3efe6;
+      --gold: #D4AF37;
+      --gold-bright: #e7cd92;
+      --line: rgba(255,255,255,.09);
+      --radius: 12px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* CONTROL PANEL */
+    .control-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(12, 12, 15, .95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      z-index: 100;
+      padding: 16px 20px;
+    }
+
+    .control-panel h3 {
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .controls {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-group label {
+      font-size: 0.85rem;
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .control-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .control-btn {
+      padding: 8px 14px;
+      background: rgba(212, 175, 55, .1);
+      border: 1px solid var(--gold);
+      color: var(--fg);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .control-btn:hover,
+    .control-btn.active {
+      background: var(--gold);
+      color: #1a1408;
+      font-weight: 600;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      margin-top: 140px;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(212,175,55,.03), transparent);
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-text {
+      z-index: 10;
+    }
+
+    .hero-text h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .hero-text h1 .gold {
+      color: var(--gold-bright);
+      font-style: italic;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: rgba(243,239,230,.7);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      color: #1a1408;
+      box-shadow: 0 20px 60px rgba(212,175,55,.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 26px 70px rgba(212,175,55,.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid rgba(212,175,55,.4);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold-bright);
+    }
+
+    /* GLOBE */
+    .hero-visual {
+      position: relative;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .globe-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+
+    .globe {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2b6fb3 0%, #06182e 100%);
+      box-shadow:
+        0 0 60px rgba(120,170,255,.22),
+        0 0 120px rgba(212,175,55,.10),
+        -6px 0 10px #cfe9ff inset,
+        16px 2px 30px #000 inset,
+        -26px -2px 40px #cfe9ff88 inset;
+      animation: globeSpin 40s linear infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hero B: 2D Earth (no rotation) */
+    [data-hero="b"] .globe {
+      animation: none;
+      background: radial-gradient(circle at 35% 35%, #4a90e2 0%, #1a3a5c 50%, #0f2438 100%);
+      box-shadow:
+        0 0 40px rgba(120,170,255,.3),
+        0 0 80px rgba(120,170,255,.1);
+    }
+
+    .globe::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 35% 35%, rgba(200,220,255,.2), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .globe-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #fff;
+      animation: twinkle 3s infinite;
+    }
+
+    @keyframes globeSpin {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    /* PROCESS SECTION */
+    .process-section {
+      min-height: 100vh;
+      padding: 100px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(212,175,55,.02) 100%);
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 80px;
+      max-width: 600px;
+    }
+
+    .process-header .kicker {
+      font-size: 0.9rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .process-header h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: var(--fg);
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      max-width: 500px;
+      position: relative;
+    }
+
+    /* Vertical line */
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 60px;
+      bottom: 60px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), transparent, transparent, var(--gold));
+    }
+
+    .step {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      position: relative;
+      padding-left: 0;
+    }
+
+    .step-icon {
+      font-size: 3rem;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(212,175,55,.1);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .step-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--gold-bright);
+      font-family: 'Fraunces', Georgia, serif;
+    }
+
+    .step-content p {
+      color: rgba(243,239,230,.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .step-timeline {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* HIDDEN / SHOWN */
+    .variant {
+      display: none;
+    }
+
+    .variant.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* FOOTER */
+    .footer {
+      background: rgba(0,0,0,.5);
+      border-top: 1px solid var(--line);
+      padding: 40px;
+      text-align: center;
+      color: rgba(243,239,230,.6);
+      font-size: 0.9rem;
+    }
+
+    /* RECOMMENDATION */
+    .recommendation {
+      background: rgba(212,175,55,.1);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .recommendation h3 {
+      color: var(--gold-bright);
+      margin-bottom: 12px;
+      font-family: 'Fraunces', Georgia, serif;
+    }
+
+    .recommendation p {
+      color: rgba(243,239,230,.8);
+      line-height: 1.6;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 30px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .globe {
+        width: 240px;
+        height: 240px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .control-panel {
+        padding: 12px 16px;
+      }
+
+      .control-buttons {
+        gap: 6px;
+      }
+
+      .control-btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+      }
+
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .globe {
+        width: 180px;
+        height: 180px;
+      }
+
+      .process-steps::before {
+        left: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTROL PANEL -->
+  <div class="control-panel">
+    <h3>🎨 Redesign Preview — Wähle deine Kombination</h3>
+    <div class="controls">
+      <div class="control-group">
+        <label>HERO TEXT:</label>
+        <div class="control-buttons">
+          <button class="control-btn active" data-hero="a">Option A: "In 2 Wochen"</button>
+          <button class="control-btn" data-hero="b">Option B: "Von Idee zur Website"</button>
+          <button class="control-btn" data-hero="c">Option C: "Website für Lokale"</button>
+          <button class="control-btn" data-hero="d">Option D: "Alte Website kostet dich Kunden"</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <label>PROCESS ICONS:</label>
+        <div class="control-buttons">
+          <button class="control-btn active" data-icons="1">Option 1: 💬 🎨 ⚙️ 🚀</button>
+          <button class="control-btn" data-icons="2">Option 2: 📋 📐 💻 ✅</button>
+          <button class="control-btn" data-icons="3">Option 3: 🤝 🎨 🔧 🎯</button>
+          <button class="control-btn" data-icons="4">Option 4: 💬 🖌️ ⚡ 🚀</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="container">
+
+    <!-- ===== HERO VARIANTS ===== -->
+
+    <!-- HERO A -->
+    <div class="variant hero-variant active" data-hero="a">
+      <section class="hero-section">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1>Website in <span class="gold">2 Wochen</span></h1>
+            <p>Schnell. Hochwertig. Konvertiert.</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary">Projekt starten →</button>
+              <button class="btn btn-outline">Kostenlos beraten</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="globe-container">
+              <div class="globe">
+                <span class="globe-star" style="left:20%;top:30%;"></span>
+                <span class="globe-star" style="left:70%;top:20%;"></span>
+                <span class="globe-star" style="left:30%;top:70%;"></span>
+                <span class="globe-star" style="left:80%;top:60%;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- HERO B -->
+    <div class="variant hero-variant" data-hero="b">
+      <section class="hero-section">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1>Von Idee zur Website.<br><span class="gold">48 Stunden max.</span></h1>
+            <p>Keine Wartezeiten. Kein Baukasten-Look.</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary">Meine Arbeit ansehen →</button>
+              <button class="btn btn-outline">Jetzt anfragen</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="globe-container">
+              <div class="globe">
+                <span class="globe-star" style="left:20%;top:30%;"></span>
+                <span class="globe-star" style="left:70%;top:20%;"></span>
+                <span class="globe-star" style="left:30%;top:70%;"></span>
+                <span class="globe-star" style="left:80%;top:60%;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- HERO C -->
+    <div class="variant hero-variant" data-hero="c">
+      <section class="hero-section">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1>Website für lokale Unternehmen</h1>
+            <p>In 2 Wochen live. 100% Custom. <span class="gold">Ab 79€/mo</span></p>
+            <div class="hero-cta">
+              <button class="btn btn-primary">Kostenlos beraten →</button>
+              <button class="btn btn-outline">Portfolio ansehen</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="globe-container">
+              <div class="globe">
+                <span class="globe-star" style="left:20%;top:30%;"></span>
+                <span class="globe-star" style="left:70%;top:20%;"></span>
+                <span class="globe-star" style="left:30%;top:70%;"></span>
+                <span class="globe-star" style="left:80%;top:60%;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- HERO D -->
+    <div class="variant hero-variant" data-hero="d">
+      <section class="hero-section">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1>Deine alte Website<br>kostet dich <span class="gold">Kunden</span></h1>
+            <p>Wir bauen dir eine neue. In 14 Tagen.</p>
+            <div class="hero-cta">
+              <button class="btn btn-primary">Website-Audit starten →</button>
+              <button class="btn btn-outline">Vorher/Nachher sehen</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="globe-container">
+              <div class="globe">
+                <span class="globe-star" style="left:20%;top:30%;"></span>
+                <span class="globe-star" style="left:70%;top:20%;"></span>
+                <span class="globe-star" style="left:30%;top:70%;"></span>
+                <span class="globe-star" style="left:80%;top:60%;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== PROCESS VARIANTS ===== -->
+
+    <!-- ICONS SET 1 -->
+    <div class="variant icons-variant active" data-icons="1">
+      <section class="process-section">
+        <div class="process-header">
+          <span class="kicker">Ablauf</span>
+          <h2>In 4 Schritten online</h2>
+        </div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-icon">💬</div>
+            <div class="step-content">
+              <h3>Brief</h3>
+              <p>Kostenlos über dein Business, Ziele und Vorstellungen sprechen.</p>
+              <span class="step-timeline">Tag 1–2</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🎨</div>
+            <div class="step-content">
+              <h3>Design</h3>
+              <p>Ich erstelle einen Custom-Entwurf, der zu deiner Branche passt.</p>
+              <span class="step-timeline">Tag 3–5</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">⚙️</div>
+            <div class="step-content">
+              <h3>Entwicklung</h3>
+              <p>Schnelle, saubere Umsetzung. Responsive, SEO-optimiert.</p>
+              <span class="step-timeline">Tag 6–12</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚀</div>
+            <div class="step-content">
+              <h3>Live</h3>
+              <p>Deine Website geht online — und ich bleibe für Updates da.</p>
+              <span class="step-timeline">Tag 13–14</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ICONS SET 2 -->
+    <div class="variant icons-variant" data-icons="2">
+      <section class="process-section">
+        <div class="process-header">
+          <span class="kicker">Ablauf</span>
+          <h2>In 4 Schritten online</h2>
+        </div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-icon">📋</div>
+            <div class="step-content">
+              <h3>Brief</h3>
+              <p>Kostenlos über dein Business, Ziele und Vorstellungen sprechen.</p>
+              <span class="step-timeline">Tag 1–2</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">📐</div>
+            <div class="step-content">
+              <h3>Design</h3>
+              <p>Ich erstelle einen Custom-Entwurf, der zu deiner Branche passt.</p>
+              <span class="step-timeline">Tag 3–5</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">💻</div>
+            <div class="step-content">
+              <h3>Code</h3>
+              <p>Schnelle, saubere Umsetzung. Responsive, SEO-optimiert.</p>
+              <span class="step-timeline">Tag 6–12</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">✅</div>
+            <div class="step-content">
+              <h3>Launch</h3>
+              <p>Deine Website geht online — und ich bleibe für Updates da.</p>
+              <span class="step-timeline">Tag 13–14</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ICONS SET 3 -->
+    <div class="variant icons-variant" data-icons="3">
+      <section class="process-section">
+        <div class="process-header">
+          <span class="kicker">Ablauf</span>
+          <h2>In 4 Schritten online</h2>
+        </div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-icon">🤝</div>
+            <div class="step-content">
+              <h3>Kickoff</h3>
+              <p>Kostenlos über dein Business, Ziele und Vorstellungen sprechen.</p>
+              <span class="step-timeline">Tag 1–2</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🎨</div>
+            <div class="step-content">
+              <h3>Design</h3>
+              <p>Ich erstelle einen Custom-Entwurf, der zu deiner Branche passt.</p>
+              <span class="step-timeline">Tag 3–5</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🔧</div>
+            <div class="step-content">
+              <h3>Build</h3>
+              <p>Schnelle, saubere Umsetzung. Responsive, SEO-optimiert.</p>
+              <span class="step-timeline">Tag 6–12</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🎯</div>
+            <div class="step-content">
+              <h3>Go Live</h3>
+              <p>Deine Website geht online — und ich bleibe für Updates da.</p>
+              <span class="step-timeline">Tag 13–14</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ICONS SET 4 -->
+    <div class="variant icons-variant" data-icons="4">
+      <section class="process-section">
+        <div class="process-header">
+          <span class="kicker">Ablauf</span>
+          <h2>In 4 Schritten online</h2>
+        </div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-icon">💬</div>
+            <div class="step-content">
+              <h3>Talk</h3>
+              <p>Kostenlos über dein Business, Ziele und Vorstellungen sprechen.</p>
+              <span class="step-timeline">Tag 1–2</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🖌️</div>
+            <div class="step-content">
+              <h3>Create</h3>
+              <p>Ich erstelle einen Custom-Entwurf, der zu deiner Branche passt.</p>
+              <span class="step-timeline">Tag 3–5</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">⚡</div>
+            <div class="step-content">
+              <h3>Build</h3>
+              <p>Schnelle, saubere Umsetzung. Responsive, SEO-optimiert.</p>
+              <span class="step-timeline">Tag 6–12</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-icon">🚀</div>
+            <div class="step-content">
+              <h3>Deploy</h3>
+              <p>Deine Website geht online — und ich bleibe für Updates da.</p>
+              <span class="step-timeline">Day 13–14</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- RECOMMENDATION -->
+    <div class="recommendation">
+      <h3>🎯 MEINE EMPFEHLUNG:</h3>
+      <p><strong>Hero D + Icons Set 1 (💬 🎨 ⚙️ 🚀)</strong></p>
+      <p style="margin-top: 12px;">Warum? Hero D ist psychologisch am stärksten — „deine alte Website kostet dich Kunden" ist ein Problem-Statement, das Action erzeugt. Icons Set 1 ist klassisch und professionell. Kombination wirkt am besten für lokale Handwerksbetriebe (Friseure, Elektriker, Restaurants).</p>
+      <p style="margin-top: 12px;"><strong>Alternative:</strong> Hero A + Icons Set 3 (🤝 🎨 🔧 🎯) — wenn du eher Speed + Freundlichkeit ausspielen willst.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>💡 <strong>Nächster Schritt:</strong> Sag mir die Kombination, die dir gefällt → Ich integriere sie in deine Live-Website auf Netlify.</p>
+    </div>
+
+  </div>
+
+  <script>
+    // HERO SWITCHER
+    document.querySelectorAll('[data-hero]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-hero]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const heroVal = btn.dataset.hero;
+        document.querySelectorAll('.hero-variant').forEach(v => v.classList.remove('active'));
+        document.querySelector(`.hero-variant[data-hero="${heroVal}"]`).classList.add('active');
+      });
+    });
+
+    // ICONS SWITCHER
+    document.querySelectorAll('[data-icons]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-icons]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const iconsVal = btn.dataset.icons;
+        document.querySelectorAll('.icons-variant').forEach(v => v.classList.remove('active'));
+        document.querySelector(`.icons-variant[data-icons="${iconsVal}"]`).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
