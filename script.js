@@ -181,38 +181,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- Contact form → opens mail client (temporary, no backend) ---------- */
-  // TODO: später auf Formspree/Domain-Mail umstellen — Adresse hier zentral ändern:
-  var CONTACT_EMAIL = 'info@zaiddigital.de';
+  /* ---------- Contact form → Formspree (echtes Backend, speichert jede Anfrage) ---------- */
   const form = document.getElementById('form');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const val = id => (document.getElementById(id)?.value || '').trim();
-      const name = val('name'), email = val('email'), branche = val('branche'), msg = val('msg');
-
-      const subject = 'Webdesign-Anfrage' + (name ? ' von ' + name : '');
-      const body =
-        'Name: ' + name + '\n' +
-        'E-Mail: ' + email + '\n' +
-        'Branche: ' + branche + '\n\n' +
-        'Nachricht:\n' + msg + '\n';
-      const mailto = 'mailto:' + CONTACT_EMAIL +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(body);
-
       const btn = form.querySelector('button[type="submit"]');
       const original = btn.innerHTML;
-      btn.innerHTML = 'E-Mail-Programm öffnet sich …';
       btn.disabled = true;
-
-      // Open the user's mail client with everything pre-filled
-      window.location.href = mailto;
-
-      setTimeout(() => {
-        btn.innerHTML = original;
+      btn.innerHTML = 'Wird gesendet …';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          btn.innerHTML = '✓ Danke! Ich melde mich in 24 Std.';
+          btn.style.background = '#1faa59';
+          btn.style.borderColor = '#1faa59';
+        } else {
+          throw new Error('send failed');
+        }
+      } catch (err) {
+        btn.innerHTML = 'Fehler — bitte anrufen: 0179 4741210';
         btn.disabled = false;
-      }, 3000);
+        setTimeout(() => { btn.innerHTML = original; }, 5000);
+      }
     });
   }
 
@@ -366,5 +362,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// WhatsApp Button Styling
-const whatsappStyle = document.createElement("style"); whatsappStyle.innerHTML = ".whatsapp-btn{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background-color:#25d366;border-radius:50flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,211,102,0.3);transition:all 0.3s;z-index:999;text-decoration:none}.whatsapp-btn:hover{background-color:#20ba5a;transform:scale(1.1);box-shadow:0 6px 16px rgba(37,211,102,0.4)}@media(max-width:768px){.whatsapp-btn{bottom:20px;right:20px;width:55px;height:55px}}"; document.head.appendChild(whatsappStyle);
+// ---------- WhatsApp Floating Button (Style + Button) ----------
+(function () {
+  var s = document.createElement("style");
+  s.innerHTML = ".whatsapp-btn{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s,background .25s;z-index:999;text-decoration:none}.whatsapp-btn:hover{background:#20ba5a;transform:scale(1.1);box-shadow:0 8px 22px rgba(37,211,102,.5)}.whatsapp-btn svg{width:34px;height:34px;fill:#fff}@media(max-width:768px){.whatsapp-btn{bottom:92px;right:16px;width:54px;height:54px}.whatsapp-btn svg{width:30px;height:30px}}";
+  document.head.appendChild(s);
+  var a = document.createElement("a");
+  a.href = "https://wa.me/491794741210";
+  a.className = "whatsapp-btn";
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.setAttribute("aria-label", "WhatsApp Chat starten");
+  a.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.49-1.711zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>';
+  document.body.appendChild(a);
+})();
